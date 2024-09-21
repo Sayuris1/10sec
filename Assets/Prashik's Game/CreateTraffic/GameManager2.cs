@@ -10,9 +10,15 @@ public class GameManager2 : MonoBehaviour
     public float maxZ = 10f; // Maximum Z position to spawn cars
 
     private float timer;
+    public bool gameWon = false; // Variable to track if the game is won
 
     void Update()
     {
+        if (gameWon)
+        {
+            return; // Stop updating if the game is won
+        }
+
         timer += Time.deltaTime;
 
         if (timer >= spawnInterval)
@@ -32,6 +38,8 @@ public class GameManager2 : MonoBehaviour
 
     public void GameOver(bool won)
     {
+        gameWon = won; // Set gameWon to the passed value
+
         if (won)
         {
             Debug.Log("You Win!");
@@ -45,5 +53,10 @@ public class GameManager2 : MonoBehaviour
 
         // Reload the scene or stop the game
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public bool IsGameWon()
+    {
+        return gameWon;
     }
 }

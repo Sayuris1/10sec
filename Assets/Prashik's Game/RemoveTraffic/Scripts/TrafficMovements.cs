@@ -2,25 +2,27 @@ using UnityEngine;
 
 public class CarTrafficMovement : MonoBehaviour
 {
-    public float movementRange = 0.2f; // How far the car can move from its starting position
+    public float movementRange = 0.2f; // Maximum movement range for the car
     public float speed = 0.5f; // Movement speed
-    public float rotationAngle = 10.0f; // Maximum rotation angle
+    public float directionChangeInterval = 1.0f; // Interval to change direction
 
     private Vector3 initialPosition;
-    private Quaternion initialRotation;
+    private Vector3 targetPosition;
     private float moveTimer;
-    private float directionChangeInterval = 1.0f; // Change direction more frequently
+
+    public GameObject arrowIndicator; // Reference to the 3D arrow indicator
 
     private void Start()
     {
         initialPosition = transform.position;
-        initialRotation = transform.rotation;
+        targetPosition = initialPosition;
         moveTimer = directionChangeInterval;
+        arrowIndicator.SetActive(false); // Hide the indicator at the start
     }
 
     private void Update()
     {
-        if (GameManager.Instance.gameWon)
+        if (GameManager.Instance.GameWon)
         {
             return; // Stop updating if the game is won
         }
@@ -37,33 +39,32 @@ public class CarTrafficMovement : MonoBehaviour
 
     private void ChangeDirection()
     {
-        // Choose a very small random movement direction
-        Vector3 randomDirection = new Vector3(
-            Random.Range(-movementRange, movementRange),
-            0,
-            Random.Range(-movementRange, movementRange)
-        );
+        // Choose a small random movement direction within the movement range
+        float offsetX = Random.Range(-movementRange, movementRange);
+        float offsetZ = Random.Range(-movementRange, movementRange);
 
-        // Apply a very small random rotation
-        float randomRotation = Random.Range(-rotationAngle, rotationAngle);
-        Quaternion targetRotation = Quaternion.Euler(0, randomRotation, 0);
-
-        // Update target position and rotation within a confined range
-        Vector3 targetPosition = initialPosition + randomDirection;
+        // Calculate the target position and ensure it stays within the initial position range
         targetPosition = new Vector3(
-            Mathf.Clamp(targetPosition.x, initialPosition.x - movementRange, initialPosition.x + movementRange),
+            Mathf.Clamp(initialPosition.x + offsetX, initialPosition.x - movementRange, initialPosition.x + movementRange),
             initialPosition.y,
-            Mathf.Clamp(targetPosition.z, initialPosition.z - movementRange, initialPosition.z + movementRange)
+            Mathf.Clamp(initialPosition.z + offsetZ, initialPosition.z - movementRange, initialPosition.z + movementRange)
         );
 
-        initialPosition = targetPosition;
-        initialRotation = targetRotation;
+        // Ensure the target position does not overlap with nearby cars
+        Collider[] hitColliders = Physics.OverlapSphere(targetPosition, 0.5f);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.gameObject != gameObject)
+            {
+                targetPosition = initialPosition; // Reset to initial position if overlapping with another car
+                break;
+            }
+        }
     }
 
     private void Move()
     {
-        // Move and rotate the car towards the target position and rotation
-        transform.position = Vector3.MoveTowards(transform.position, initialPosition, speed * Time.deltaTime);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, initialRotation, rotationAngle * Time.deltaTime);
+        // Move the car towards the target position
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
     }
 }

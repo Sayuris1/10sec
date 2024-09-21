@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public bool gameWon { get; private set; }
+    public bool GameWon { get; private set; }
 
     private void Awake()
     {
@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
-        gameWon = true;
+        GameWon = true;
         Debug.Log("Game has been won!");
-        // Additional win logic can go here
+        // Additional win logic can go here, such as displaying a win message or stopping other game elements
     }
 }
