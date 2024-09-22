@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e797cb8c39fc75f4dafaefa5f142a0ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalCountDown: 10
+  GlobalCountDown: 14
   CurrentCountDown: 0
   _waitAfterFinish: 2
 --- !u!114 &1934796111
@@ -237,8 +237,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllMinigameScenes:
+  - HonkTheTraffic
   - BirdGame
-  - MouseGame
   FailedMinigames: 
 --- !u!4 &1934796112
 Transform:

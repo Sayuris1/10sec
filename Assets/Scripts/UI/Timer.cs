@@ -44,6 +44,8 @@ public class CountdownTimer : MonoBehaviour
 
     IEnumerator Countdown()
     {
+        yield return new WaitForSeconds(4f);
+
         while (countdownTime > 0)
         {
             audioSource.PlayOneShot(tickSound); // Play ticking sound

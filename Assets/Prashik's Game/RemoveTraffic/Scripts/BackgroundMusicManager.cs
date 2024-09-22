@@ -8,6 +8,7 @@ public class BackgroundMusicManager : MonoBehaviour
     private void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.volume = 0.2f;
         audioSource.clip = backgroundMusic;
         audioSource.loop = true; // Loop the music
         audioSource.Play();

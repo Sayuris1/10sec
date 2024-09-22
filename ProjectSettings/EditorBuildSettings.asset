@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BirdGame.unity
     guid: fa25a5686aac9294e8cddb5f9de2ac16
+  - enabled: 1
+    path: Assets/Scenes/HonkTheTraffic.unity
+    guid: 777b8c5f575a2254dbedfef0da16cd06
   m_configObjects: {}

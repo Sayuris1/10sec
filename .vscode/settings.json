@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "10sec.sln"
+    "dotnet.defaultSolution": "Projects.sln"
 }

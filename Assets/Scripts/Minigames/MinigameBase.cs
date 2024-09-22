@@ -38,8 +38,11 @@ public class MinigameBase : MonoBehaviour
     
     public void FinishMinigame()
     {
+        FUI.Instance.SetPrompt(IsWon);
+
         if(IsWon)
         {
+
             IncreaseThisMinigameWinCount();
             WonMinigame();
         }
