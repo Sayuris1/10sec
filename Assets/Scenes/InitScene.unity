@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllMinigameScenes:
-  - BirdGame
+  - MouseGame
   FailedMinigames: 
 --- !u!4 &1934796112
 Transform:

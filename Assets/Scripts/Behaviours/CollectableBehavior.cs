@@ -7,6 +7,12 @@ public class CollectableBehavior : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        foreach (string tag in TagsToCollide)
+        {
+            if(!other.gameObject.CompareTag(tag))
+                return;
+        }
+
         FUI.Instance.CheeseToCollect--;
         Destroy(gameObject);
     }

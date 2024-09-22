@@ -47,6 +47,10 @@ public class RotateMoveNehaviour : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 50))
             transform.position = hit.point + extentsUp;
 
+        LayerMask mask = ~(1 << LayerMask.NameToLayer("Cheese"));
+        if (Physics.Raycast(transform.position, new Vector3(-_inputAmount.x, 0, -_inputAmount.y), out RaycastHit hit1, 2, mask))
+            transform.position += Vector3.Scale(Vector3.up, _collider.bounds.size);
+
         transform.position += Vector3.Scale(new Vector3(-_inputAmount.x, 0, -_inputAmount.y), _collider.bounds.size);
     }
 

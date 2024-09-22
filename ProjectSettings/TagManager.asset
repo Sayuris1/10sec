@@ -7,11 +7,12 @@ TagManager:
   - Car
   - Winzone
   - ArrowIndicator
+  - Cheese
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Cheese
   - Water
   - UI
   - 
