@@ -78,11 +78,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -121,8 +121,8 @@ MonoBehaviour:
   Sign: {fileID: 6675597716260940591}
   PromptTMP: {fileID: 155492027620813683}
   StartText: 
-  Win: Win
-  Lose: Lose
+  Win: You won!!
+  Lose: You died!!
   _cheeseToCollect: 0
   _carsToShit: 3
 --- !u!114 &9153580843469785300
@@ -306,8 +306,24 @@ PrefabInstance:
       value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2628705279789763508, guid: 8a2adb5fa67be254a9fd12be1883fce0, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628705279789763508, guid: 8a2adb5fa67be254a9fd12be1883fce0, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628705279789763508, guid: 8a2adb5fa67be254a9fd12be1883fce0, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628705279789763508, guid: 8a2adb5fa67be254a9fd12be1883fce0, type: 3}
       propertyPath: m_fontSizeBase
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628705279789763508, guid: 8a2adb5fa67be254a9fd12be1883fce0, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
       objectReference: {fileID: 0}
     - target: {fileID: 2628705279789763508, guid: 8a2adb5fa67be254a9fd12be1883fce0, type: 3}
       propertyPath: m_VerticalAlignment

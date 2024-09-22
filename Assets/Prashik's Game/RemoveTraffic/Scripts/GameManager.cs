@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public void WinGame()
     {
         GameWon = true;
+        AllGamesSingleton.Instance.CurrentMinigame.IsWon = true;
         winText.gameObject.SetActive(true); // Show win text
         loseText.gameObject.SetActive(false); // Hide lose text
         Debug.Log("Game has been won!");
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
     public void LoseGame()
     {
         GameLost = true;
+        AllGamesSingleton.Instance.CurrentMinigame.IsWon = false;
         loseText.gameObject.SetActive(true); // Show lose text
         winText.gameObject.SetActive(false); // Hide win text
         Debug.Log("Game has been lost!");

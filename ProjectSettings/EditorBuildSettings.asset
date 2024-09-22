@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HonkTheTraffic.unity
     guid: 777b8c5f575a2254dbedfef0da16cd06
+  - enabled: 1
+    path: Assets/Scenes/StopGo.unity
+    guid: bf93412ea468f144cba54165d0da931e
   m_configObjects: {}

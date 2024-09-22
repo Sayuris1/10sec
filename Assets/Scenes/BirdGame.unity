@@ -406,6 +406,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -5188
       objectReference: {fileID: 0}
+    - target: {fileID: 8040908928397312893, guid: 6dcba9aa3e7a8d24e84fc9e340dc61cc, type: 3}
+      propertyPath: StartText
+      value: Shoot the Cars!!
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

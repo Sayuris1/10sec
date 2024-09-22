@@ -223,7 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalCountDown: 14
   CurrentCountDown: 0
-  _waitAfterFinish: 2
+  _waitAfterFinish: 1
 --- !u!114 &1934796111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +238,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllMinigameScenes:
   - HonkTheTraffic
+  - StopGo
   - BirdGame
+  - MouseGame
   FailedMinigames: 
 --- !u!4 &1934796112
 Transform:

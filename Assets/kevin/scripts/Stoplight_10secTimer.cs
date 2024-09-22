@@ -34,6 +34,7 @@ public class Stoplight_10secTimer : MonoBehaviour
             if (player.gameObject.activeSelf)
             {
                 winLoseText.text = "YOU DIED";
+            AllGamesSingleton.Instance.CurrentMinigame.IsWon = false;
                 player.gameObject.SetActive(false);
                 audioSource.PlayOneShot(shortFart);
             }
