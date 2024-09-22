@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5169373043070114467}
   - component: {fileID: 6119921653882979136}
+  - component: {fileID: 7745009883409180028}
   - component: {fileID: 7238840096910878834}
   - component: {fileID: 3475065835197352154}
   m_Layer: 0
   m_Name: Shit
-  m_TagString: Car
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +49,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: -10
+--- !u!114 &7745009883409180028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7452725279717085083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d40183db78be765448f29c4f5ddee8c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TagsToCollide:
+  - Car
 --- !u!65 &7238840096910878834
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -67,8 +82,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.57617086, y: 0.25464472, z: 0.25708076}
-  m_Center: {x: -0.03653729, y: 0.13396914, z: 0.003653729}
+  m_Size: {x: 0.57617086, y: 0.40776998, z: 0.25708076}
+  m_Center: {x: -0.03653729, y: 0.057406522, z: 0.003653735}
 --- !u!54 &3475065835197352154
 Rigidbody:
   m_ObjectHideFlags: 0
