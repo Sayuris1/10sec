@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PedestrianController : MonoBehaviour
@@ -9,6 +10,8 @@ public class PedestrianController : MonoBehaviour
   [SerializeField] private float speed = 3;
   public AudioSource audioSource;
   public AudioClip explosiveFart;
+
+  [SerializeField] private GameObject explodePrefab;
 
   // Update is called once per frame
   void Update()
@@ -25,6 +28,8 @@ public class PedestrianController : MonoBehaviour
       if (!stopGoTimerScript.stoplightIsGo)
       {
         loseText.text = "YOU DIED";
+        GameObject effect = Instantiate(explodePrefab, transform.position, Quaternion.identity);
+        Destroy(effect, 1.5f);
         this.gameObject.SetActive(false);
         audioSource.PlayOneShot(explosiveFart);
       }
