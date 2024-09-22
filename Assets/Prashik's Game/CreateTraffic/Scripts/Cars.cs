@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class Cars : MonoBehaviour
 {
-    public float speed = 0.1f; // Adjust this value for slower movement
-    public float offScreenX = 15f; // X position considered off-screen
+    public float speed = 10f; // Adjust this value for movement speed
+    private Rigidbody rb;
 
-    void Update()
+    void Start()
     {
-        // Move the car slowly in the x-direction
-        transform.Translate(Vector3.right *-1* speed * Time.deltaTime);
+        rb = GetComponent<Rigidbody>();
+    }
 
-        // Destroy the car if it goes off screen
-        if (transform.position.x > offScreenX)
-        {
-            Destroy(gameObject);
-        }
+    void FixedUpdate() // Use FixedUpdate for physics updates
+    {
+        // Move the car in the negative x-direction
+        Vector3 newPosition = transform.position + Vector3.left * speed * Time.fixedDeltaTime;
+        rb.MovePosition(newPosition);
     }
 }

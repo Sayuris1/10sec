@@ -77,5 +77,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9b62f802c271640b2ea3833658a68a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
-  offScreenX: 15
+  speed: 50

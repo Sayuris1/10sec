@@ -12,18 +12,19 @@ public class GameManager2 : MonoBehaviour
     public float minSpawnDistance = 1f; // Minimum distance between spawned cars
 
     private float timer;
-    public bool gameWon = false; // Variable to track if the game is won
+    private bool gameRunning = true; // Variable to track if the game is running
     private List<GameObject> activeCars = new List<GameObject>(); // List to track active cars
 
     void Update()
     {
-        if (gameWon)
+        if (!gameRunning)
         {
-            return; // Stop updating if the game is won
+            return; // Stop updating if the game is not running
         }
 
         timer += Time.deltaTime;
 
+        // Spawn cars at intervals
         if (timer >= spawnInterval)
         {
             SpawnCar();
@@ -51,32 +52,45 @@ public class GameManager2 : MonoBehaviour
         // Instantiate the car and add it to the activeCars list
         GameObject newCar = Instantiate(carPrefab, spawnPosition, Quaternion.identity);
         activeCars.Add(newCar);
-
-        // Remove destroyed cars from the activeCars list
-        activeCars.RemoveAll(car => car == null);
     }
 
     public void GameOver(bool won)
     {
-        gameWon = won; // Set gameWon to the passed value
+        gameRunning = false; // Stop the game
 
         if (won)
         {
             Debug.Log("You Win!");
-            // Add any additional win logic here, such as displaying a win message
+            // Add any additional win logic here
         }
         else
         {
             Debug.Log("You Lose!");
-            // Add any additional lose logic here, such as displaying a lose message
+            // Add any additional lose logic here
         }
 
-        // Reload the scene or stop the game
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // Stop all cars and Granny
+        foreach (var car in activeCars)
+        {
+            if (car != null)
+            {
+                car.GetComponent<Cars>().enabled = false; // Disable car movement
+            }
+        }
+
+        // Disable Granny's movement
+        GameObject granny = GameObject.FindGameObjectWithTag("Player");
+        if (granny != null)
+        {
+            granny.GetComponent<Granny>().enabled = false; // Disable Granny's movement
+        }
+
+        // Optionally reload the scene or stop the game
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public bool IsGameWon()
+    public bool IsGameRunning()
     {
-        return gameWon;
+        return gameRunning;
     }
 }

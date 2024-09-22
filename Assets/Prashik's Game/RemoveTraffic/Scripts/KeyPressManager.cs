@@ -27,16 +27,6 @@ public class KeyPressManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
-
-        //// Initialize all arrow indicators to inactive at the start
-        //foreach (var car in cars)
-        //{
-        //    if (car.arrowIndicator != null)
-        //    {
-        //        car.arrowIndicator.SetActive(false);
-        //    }
-        //}
-
         DisplayRandomKeyOnRandomCar();
         decibelMeter.UpdateDecibelMeter(decibelLevel); // Initialize the decibel meter
 
@@ -60,41 +50,29 @@ public class KeyPressManager : MonoBehaviour
 
     private void DisplayRandomKeyOnRandomCar()
     {
-        // Hide all arrow indicators first
         foreach (var car in cars)
         {
-            if (car.arrowIndicator != null)
-            {
-                car.arrowIndicator.SetActive(false);
-            }
+            car.arrowIndicator.SetActive(false); // Hide all indicators
         }
 
-        // Select a random car and key
         int randomCarIndex = Random.Range(0, cars.Count);
         int randomKeyIndex = Random.Range(0, keys.Length);
         currentKey = keys[randomKeyIndex];
 
-        Debug.Log($"Displaying key {currentKey} on car index {randomCarIndex}.");
-
-        // Set the selected car's arrow indicator to active
         var selectedCar = cars[randomCarIndex];
-        if (selectedCar.arrowIndicator != null)
+        selectedCar.arrowIndicator.SetActive(true); // Show the indicator
+
+        if (selectedCar.arrowIndicator.transform.childCount > 0)
         {
-            selectedCar.arrowIndicator.SetActive(true);
-            Debug.Log("KeyPressManager: Arrow indicator set to active for selected car.");
-
-            // Destroy the old indicator and instantiate a new one
-            if (selectedCar.arrowIndicator.transform.childCount > 0)
-            {
-                Destroy(selectedCar.arrowIndicator.transform.GetChild(0).gameObject);
-            }
-
-            GameObject arrowPrefab = GetKeyPrefab(currentKey);
-            GameObject arrowInstance = Instantiate(arrowPrefab, selectedCar.arrowIndicator.transform);
-            arrowInstance.transform.localPosition = Vector3.zero;
-            Debug.Log("KeyPressManager: Arrow instance created and positioned.");
+            Destroy(selectedCar.arrowIndicator.transform.GetChild(0).gameObject);
         }
+
+        GameObject arrowInstance = Instantiate(GetKeyPrefab(currentKey));
+        arrowInstance.transform.SetParent(selectedCar.arrowIndicator.transform);
+        arrowInstance.transform.localPosition = Vector3.zero;
+        arrowInstance.SetActive(true); // Ensure the instance is active
     }
+
 
     private GameObject GetKeyPrefab(KeyCode key)
     {
@@ -125,10 +103,6 @@ public class KeyPressManager : MonoBehaviour
             if (honkEffect != null)
             {
                 honkEffect.Play();
-            }
-            else
-            {
-                Debug.LogWarning("Honk Effect is not assigned!");
             }
 
             DisplayRandomKeyOnRandomCar();
