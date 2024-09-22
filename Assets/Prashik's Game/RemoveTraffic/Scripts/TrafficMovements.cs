@@ -12,6 +12,8 @@ public class TrafficMovement : MonoBehaviour
 
     public GameObject arrowIndicator; // Reference to the 3D arrow indicator
 
+    private bool isMoving = true; // Flag to control movement
+
     private void Start()
     {
         initialPosition = transform.position;
@@ -19,14 +21,14 @@ public class TrafficMovement : MonoBehaviour
         moveTimer = directionChangeInterval;
 
         // Always hide the indicator at the start
-        //arrowIndicator.SetActive(false);
+        // arrowIndicator.SetActive(false);
     }
 
     private void Update()
     {
-        if (GameManager.Instance.GameWon)
+        if (GameManager.Instance.GameWon || !isMoving)
         {
-            return; // Stop updating if the game is won
+            return; // Stop updating if the game is won or the car is not moving
         }
 
         moveTimer -= Time.deltaTime;
@@ -68,5 +70,11 @@ public class TrafficMovement : MonoBehaviour
     {
         // Move the car towards the target position
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+    }
+
+    // New method to stop the car's movement
+    public void StopMovement()
+    {
+        isMoving = false; // Set the flag to false to stop moving
     }
 }

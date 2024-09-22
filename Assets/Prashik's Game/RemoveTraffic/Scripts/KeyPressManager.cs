@@ -127,10 +127,10 @@ public class KeyPressManager : MonoBehaviour
         else if (Input.anyKeyDown) // Check if any key is pressed
         {
             // Check if a key was pressed but it's not the current key
-            if (Input.inputString.Length > 0 && Input.inputString[0] != (char)currentKey)
+            if (!Input.GetKey(currentKey))
             {
                 PlayWrongKeySound(); // Play sound for wrong key press
-                gameManager.LoseGame(); // Stop the game if wrong key is pressed
+                StopGame(); // Stop the game if wrong key is pressed
             }
         }
     }
@@ -165,5 +165,18 @@ public class KeyPressManager : MonoBehaviour
             gameManager.WinGame();
         }
         decibelMeter.UpdateDecibelMeter(decibelLevel);
+    }
+
+    private void StopGame()
+    {
+        gameManager.LoseGame(); // Call the LoseGame method in GameManager
+        foreach (var car in cars)
+        {
+            car.StopMovement(); // Ensure cars stop moving
+            if (car.arrowIndicator != null)
+            {
+                car.arrowIndicator.SetActive(false); // Hide the arrow indicator
+            }
+        }
     }
 }
