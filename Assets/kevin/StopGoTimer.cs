@@ -7,10 +7,12 @@ public class StopGoTimer : MonoBehaviour
     public bool stoplightIsGo = true;
     private float currentTimer = 2;
     private GameObject player;
+    private AudioSource audioSource;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        audioSource = GetComponent<AudioSource>();
         SetStopGo(/*go=*/true);
     }
 
@@ -19,7 +21,6 @@ public class StopGoTimer : MonoBehaviour
     {
         if (!player.gameObject.activeSelf)
         {
-            stopGoText.gameObject.SetActive(false);
             return;
         }
 
@@ -41,6 +42,7 @@ public class StopGoTimer : MonoBehaviour
             stopGoText.text = "GO!!";
             stopGoText.color = Color.green;
             currentTimer = 2;
+            audioSource.PlayDelayed(1.2f);
         }
         else
         {
