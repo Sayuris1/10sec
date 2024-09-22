@@ -31,7 +31,7 @@ public class DecibelMeter : MonoBehaviour
             newColor = warningColor;
             message = "Louder!";
         }
-        else if (decibelLevel >= 100)
+        else if (decibelLevel >= 90)
         {
             newColor = dangerColor;
             message = "Almost There!";

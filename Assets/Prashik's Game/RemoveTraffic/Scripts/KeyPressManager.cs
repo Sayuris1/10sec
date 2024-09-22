@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor.Rendering.LookDev;
 
 public class KeyPressManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class KeyPressManager : MonoBehaviour
     private int decibelLevel = 0;
     private int maxDecibelLevel = 110;
     private GameManager gameManager;
+    private CameraShake cameraShake;
 
     private AudioSource[] audioSourcePool;
     private int currentAudioSourceIndex = 0; // Index to track which audio source to use
@@ -27,11 +29,11 @@ public class KeyPressManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+        cameraShake = Camera.main.GetComponent<CameraShake>(); // Get the CameraShake component
 
         DisplayRandomKeyOnRandomCar();
-        decibelMeter.UpdateDecibelMeter(decibelLevel); // Initialize the decibel meter
+        decibelMeter.UpdateDecibelMeter(decibelLevel);
 
-        // Initialize the audio source pool
         audioSourcePool = new AudioSource[audioSourcePoolSize];
         for (int i = 0; i < audioSourcePoolSize; i++)
         {
@@ -122,20 +124,27 @@ public class KeyPressManager : MonoBehaviour
                 Debug.LogWarning("Honk Effect is not assigned!");
             }
 
+            // Start camera shake effect
+            StartCoroutine(cameraShake.Shake(0.15f, 0.05f)); // Duration and magnitude can be adjusted
+
             DisplayRandomKeyOnRandomCar();
         }
-        else if (Input.anyKeyDown) // Check if any key is pressed
+        else if (Input.anyKeyDown)
         {
-            // Check if a key was pressed but it's not the current key
-            if (!Input.GetKey(currentKey))
+            foreach (KeyCode key in keys)
             {
-                PlayWrongKeySound(); // Play sound for wrong key press
-                StopGame(); // Stop the game if wrong key is pressed
+                if (Input.GetKeyDown(key) && key != currentKey)
+                {
+                    PlayWrongKeySound();
+                    gameManager.LoseGame();
+                    break;
+                }
             }
         }
-    }
+    } 
 
-    private void PlayHonkSound()
+
+        private void PlayHonkSound()
     {
         AudioSource honkSoundInstance = audioSourcePool[currentAudioSourceIndex];
         honkSoundInstance.clip = honkSounds[Random.Range(0, honkSounds.Length)];
