@@ -8,14 +8,17 @@ public class StopGoTimer : MonoBehaviour
     private float currentTimer = 2;
     private GameObject player;
 
-    private void Start() {
-        player = GameObject.FindWithTag("Player");
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        SetStopGo(/*go=*/true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!player.gameObject.activeSelf) {
+        if (!player.gameObject.activeSelf)
+        {
             stopGoText.gameObject.SetActive(false);
             return;
         }
@@ -26,19 +29,24 @@ public class StopGoTimer : MonoBehaviour
         }
         else
         {
-            if (stoplightIsGo)
-            {
-                stopGoText.text = "STOP!!";
-                stopGoText.color = Color.red;
-                currentTimer = 1;
-            }
-            else 
-            {
-                stopGoText.text = "GO!!";
-                stopGoText.color = Color.green;
-                currentTimer = 2;
-            }
             stoplightIsGo = !stoplightIsGo;
+            SetStopGo(stoplightIsGo);
+        }
+    }
+
+    void SetStopGo(bool go)
+    {
+        if (go)
+        {
+            stopGoText.text = "GO!!";
+            stopGoText.color = Color.green;
+            currentTimer = 2;
+        }
+        else
+        {
+            stopGoText.text = "STOP!!";
+            stopGoText.color = Color.red;
+            currentTimer = 1;
         }
     }
 }
