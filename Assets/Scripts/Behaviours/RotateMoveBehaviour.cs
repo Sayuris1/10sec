@@ -22,6 +22,9 @@ public class RotateMoveNehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(!_collider.attachedRigidbody.isKinematic)
+            return;
+
         if(_inputAmount.sqrMagnitude <= 0)
         {
             _pressedTime = 0;
@@ -36,10 +39,10 @@ public class RotateMoveNehaviour : MonoBehaviour
         
         _pressedTime = 0;
 
-        Vector3 rotateDir1 = Sign(new Vector3(-_inputAmount.y, 0, 0));
+        Vector3 rotateDir1 = CustomMath.Sign(new Vector3(-_inputAmount.y, 0, 0));
         transform.RotateAround(transform.position, rotateDir1, 90);
 
-        Vector3 rotateDir2 = Sign(new Vector3(0, 0, _inputAmount.x));
+        Vector3 rotateDir2 = CustomMath.Sign(new Vector3(0, 0, _inputAmount.x));
         transform.RotateAround(transform.position, rotateDir2, 90);
 
         Vector3 extentsUp = Vector3.Scale(_collider.bounds.extents, Vector3.up);
@@ -52,15 +55,5 @@ public class RotateMoveNehaviour : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         _inputAmount = context.ReadValue<Vector2>();
-    }
-
-    static float Sign(float x)
-    {
-        return x < 0 ? -1 : (x > 0 ? 1 : 0);
-    }
-
-    static Vector3 Sign(Vector3 x)
-    {
-        return new Vector3(Sign(x.x), Sign(x.y), Sign(x.z));
     }
 }

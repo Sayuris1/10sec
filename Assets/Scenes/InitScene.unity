@@ -168,8 +168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllMinigameScenes:
-  - TestMG1
+  - MouseGame
   - TestMG2
+  FailedMinigames: 
 --- !u!4 &1934796112
 Transform:
   m_ObjectHideFlags: 0
