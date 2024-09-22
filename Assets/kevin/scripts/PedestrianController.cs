@@ -28,8 +28,7 @@ public class PedestrianController : MonoBehaviour
       if (!stopGoTimerScript.stoplightIsGo)
       {
         loseText.text = "YOU DIED";
-        GameObject effect = Instantiate(explodePrefab, transform.position, Quaternion.identity);
-        Destroy(effect, 1.5f);
+        Instantiate(explodePrefab, transform.position, Quaternion.identity);
         this.gameObject.SetActive(false);
         audioSource.PlayOneShot(explosiveFart);
       }

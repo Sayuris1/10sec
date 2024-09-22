@@ -748,6 +748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopGoText: {fileID: 796298782}
   stoplightIsGo: 1
+  wonTheGame: 0
 --- !u!114 &796298782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,7 +985,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a464e2790fa728b4abfea7ec4c81c5fe, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1177,6 +1178,7 @@ MonoBehaviour:
   winText: {fileID: 1652054483}
   audioSource: {fileID: 862490726}
   winClip: {fileID: 8300000, guid: 491e5c054ff9188488c829bfef93185b, type: 3}
+  stopGoTimerScript: {fileID: 796298781}
   winEffect: {fileID: 1719573552}
 --- !u!65 &929411835
 BoxCollider:
@@ -2603,6 +2605,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1984147088}
   - {fileID: 1128882385}
+  - {fileID: 1400753746}
   - {fileID: 556312804}
   - {fileID: 1489884403}
   - {fileID: 649628642}
@@ -2616,5 +2619,4 @@ SceneRoots:
   - {fileID: 918970945}
   - {fileID: 792591314}
   - {fileID: 961859876}
-  - {fileID: 1400753746}
   - {fileID: 1077987513}

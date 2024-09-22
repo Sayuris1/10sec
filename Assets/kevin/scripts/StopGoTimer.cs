@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 
@@ -9,16 +10,27 @@ public class StopGoTimer : MonoBehaviour
     private GameObject player;
     private AudioSource audioSource;
 
+    public bool wonTheGame = false;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         audioSource = GetComponent<AudioSource>();
-        SetStopGo(/*go=*/true);
+
+        stopGoText.text = "GO!!";
+        stopGoText.color = Color.green;
+        currentTimer = 4;
+        audioSource.PlayDelayed(3.2f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (wonTheGame) {
+            stoplightIsGo = true;
+            return;
+        }
+
         if (!player.gameObject.activeSelf)
         {
             gameObject.SetActive(false);

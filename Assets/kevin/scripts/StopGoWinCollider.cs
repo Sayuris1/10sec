@@ -9,6 +9,8 @@ public class StopGoWinCollider : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip winClip;
 
+    public StopGoTimer stopGoTimerScript;
+
     [SerializeField] private GameObject winEffect;
 
     private void OnTriggerEnter(Collider other)
@@ -20,7 +22,7 @@ public class StopGoWinCollider : MonoBehaviour
             GameObject effect = Instantiate(winEffect, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             Destroy(effect, 1.5f);
             audioSource.PlayOneShot(winClip);
-            other.gameObject.SetActive(false);
+            stopGoTimerScript.wonTheGame = true;
         }
     }
 }
