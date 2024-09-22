@@ -28,6 +28,8 @@ public class AllGamesSingleton : MonoBehaviour
     public int SetCurrentMinigame(MinigameBase minigame)
     {
         CurrentMinigame = minigame;
+
+        LightController.Instance.SetLights();
         
         return _currentMinigameIndex;
     }

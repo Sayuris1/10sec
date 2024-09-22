@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class TestMG1 : MinigameBase
+public class MouseMinigame : MinigameBase
 {
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Space))
             IsWon = true;
     }
 
     protected override void InitMinigame()
     {
-        FUI.Instance.PromptTMP.text = "Press A To Win";
+        FUI.Instance.PromptTMP.text = "Press Space To Win";
     }
 
     protected override void WonMinigame()
