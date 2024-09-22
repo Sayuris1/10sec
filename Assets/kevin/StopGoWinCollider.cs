@@ -11,6 +11,7 @@ public class StopGoWinCollider : MonoBehaviour
         if (other.tag == "Player")
         {
             winText.text = "YOU WON";
+            other.gameObject.SetActive(false);
         }
     }
 }
