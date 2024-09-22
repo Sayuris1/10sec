@@ -55,4 +55,9 @@ public class AllGamesSingleton : MonoBehaviour
         AllMinigameScenes = AllMinigameScenes.OrderBy<string, int>((i) => Random.Range(0, int.MaxValue - 1)).ToList();
         return 0;
     }
+
+    public void MoveGOToCurrentScene(GameObject go)
+    {
+        SceneManager.MoveGameObjectToScene(go, SceneManager.GetSceneByName(AllMinigameScenes[_currentMinigameIndex]));
+    }
 }
