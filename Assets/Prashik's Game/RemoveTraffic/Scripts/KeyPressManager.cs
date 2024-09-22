@@ -50,28 +50,40 @@ public class KeyPressManager : MonoBehaviour
 
     private void DisplayRandomKeyOnRandomCar()
     {
-        foreach (var car in cars)
+        // Hide all arrow indicators first by finding them by tag
+        GameObject[] arrowIndicators = GameObject.FindGameObjectsWithTag("ArrowIndicator");
+        foreach (var arrow in arrowIndicators)
         {
-            car.arrowIndicator.SetActive(false); // Hide all indicators
+            arrow.SetActive(false); // Deactivate all indicators
         }
 
+        // Select a random car and key
         int randomCarIndex = Random.Range(0, cars.Count);
         int randomKeyIndex = Random.Range(0, keys.Length);
         currentKey = keys[randomKeyIndex];
 
+        Debug.Log($"Displaying key {currentKey} on car index {randomCarIndex}.");
+
         var selectedCar = cars[randomCarIndex];
-        selectedCar.arrowIndicator.SetActive(true); // Show the indicator
-
-        if (selectedCar.arrowIndicator.transform.childCount > 0)
+        if (selectedCar.arrowIndicator != null)
         {
-            Destroy(selectedCar.arrowIndicator.transform.GetChild(0).gameObject);
-        }
+            selectedCar.arrowIndicator.SetActive(true); // Activate the selected car's arrow indicator
+            Debug.Log("KeyPressManager: Arrow indicator set to active for selected car.");
 
-        GameObject arrowInstance = Instantiate(GetKeyPrefab(currentKey));
-        arrowInstance.transform.SetParent(selectedCar.arrowIndicator.transform);
-        arrowInstance.transform.localPosition = Vector3.zero;
-        arrowInstance.SetActive(true); // Ensure the instance is active
+            // Destroy the old indicator and instantiate a new one
+            if (selectedCar.arrowIndicator.transform.childCount > 0)
+            {
+                Destroy(selectedCar.arrowIndicator.transform.GetChild(0).gameObject);
+            }
+
+            GameObject arrowPrefab = GetKeyPrefab(currentKey);
+            GameObject arrowInstance = Instantiate(arrowPrefab, selectedCar.arrowIndicator.transform);
+            arrowInstance.transform.localPosition = Vector3.zero;
+            Debug.Log("KeyPressManager: Arrow instance created and positioned.");
+        }
     }
+
+
 
 
     private GameObject GetKeyPrefab(KeyCode key)
