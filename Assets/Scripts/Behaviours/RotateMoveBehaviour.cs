@@ -7,8 +7,6 @@ public class RotateMoveNehaviour : MonoBehaviour
     private Vector2 _inputAmount;
     private Collider _collider;
     
-    private Vector3 _currentRot = Vector3.zero;
-
     [SerializeField] private float _stepTime = 0;
     [SerializeField] private float _stepTimeDecrease = 0;
     [SerializeField] private float _stepTimeMin = 0.01f;
