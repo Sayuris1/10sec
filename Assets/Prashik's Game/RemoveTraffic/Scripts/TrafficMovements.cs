@@ -19,7 +19,7 @@ public class TrafficMovement : MonoBehaviour
         moveTimer = directionChangeInterval;
 
         // Always hide the indicator at the start
-        arrowIndicator.SetActive(false);
+        //arrowIndicator.SetActive(false);
     }
 
     private void Update()
