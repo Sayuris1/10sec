@@ -5,6 +5,7 @@ public class MinigameBase : MonoBehaviour
 {
     [HideInInspector] public bool IsWon = false;
     [HideInInspector] public int MinigameID = 0;
+    public GameObject SceneLights;
 
     private void Start()
     {
