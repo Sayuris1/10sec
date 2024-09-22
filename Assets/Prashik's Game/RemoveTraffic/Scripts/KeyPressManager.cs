@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class KeyPressManager : MonoBehaviour
 {
-    public List<CarTrafficMovement> cars; // List of all cars in the scene
+    public List<TrafficMovement> cars; // List of all cars in the scene
     public GameObject upArrowPrefab;
     public GameObject downArrowPrefab;
     public GameObject leftArrowPrefab;
@@ -27,6 +27,16 @@ public class KeyPressManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+
+        //// Initialize all arrow indicators to inactive at the start
+        //foreach (var car in cars)
+        //{
+        //    if (car.arrowIndicator != null)
+        //    {
+        //        car.arrowIndicator.SetActive(false);
+        //    }
+        //}
+
         DisplayRandomKeyOnRandomCar();
         decibelMeter.UpdateDecibelMeter(decibelLevel); // Initialize the decibel meter
 
@@ -50,27 +60,40 @@ public class KeyPressManager : MonoBehaviour
 
     private void DisplayRandomKeyOnRandomCar()
     {
+        // Hide all arrow indicators first
+        foreach (var car in cars)
+        {
+            if (car.arrowIndicator != null)
+            {
+                car.arrowIndicator.SetActive(false);
+            }
+        }
+
+        // Select a random car and key
         int randomCarIndex = Random.Range(0, cars.Count);
         int randomKeyIndex = Random.Range(0, keys.Length);
         currentKey = keys[randomKeyIndex];
 
-        foreach (var car in cars)
-        {
-            car.arrowIndicator.SetActive(false); // Hide all indicators
-        }
+        Debug.Log($"Displaying key {currentKey} on car index {randomCarIndex}.");
 
+        // Set the selected car's arrow indicator to active
         var selectedCar = cars[randomCarIndex];
-        selectedCar.arrowIndicator.SetActive(true); // Show indicator on selected car
-
-        // Destroy the old indicator and instantiate a new one
-        if (selectedCar.arrowIndicator.transform.childCount > 0)
+        if (selectedCar.arrowIndicator != null)
         {
-            Destroy(selectedCar.arrowIndicator.transform.GetChild(0).gameObject);
-        }
+            selectedCar.arrowIndicator.SetActive(true);
+            Debug.Log("KeyPressManager: Arrow indicator set to active for selected car.");
 
-        GameObject arrowPrefab = GetKeyPrefab(currentKey);
-        GameObject arrowInstance = Instantiate(arrowPrefab, selectedCar.arrowIndicator.transform);
-        arrowInstance.transform.localPosition = Vector3.zero;
+            // Destroy the old indicator and instantiate a new one
+            if (selectedCar.arrowIndicator.transform.childCount > 0)
+            {
+                Destroy(selectedCar.arrowIndicator.transform.GetChild(0).gameObject);
+            }
+
+            GameObject arrowPrefab = GetKeyPrefab(currentKey);
+            GameObject arrowInstance = Instantiate(arrowPrefab, selectedCar.arrowIndicator.transform);
+            arrowInstance.transform.localPosition = Vector3.zero;
+            Debug.Log("KeyPressManager: Arrow instance created and positioned.");
+        }
     }
 
     private GameObject GetKeyPrefab(KeyCode key)
@@ -97,11 +120,8 @@ public class KeyPressManager : MonoBehaviour
         if (Input.GetKeyDown(currentKey))
         {
             IncreaseDecibelLevel();
-
-            // Play the honk sound using the next audio source in the pool
             PlayHonkSound();
 
-            // Play the particle effect
             if (honkEffect != null)
             {
                 honkEffect.Play();
@@ -111,19 +131,16 @@ public class KeyPressManager : MonoBehaviour
                 Debug.LogWarning("Honk Effect is not assigned!");
             }
 
-            // Show a new random key on a different car
             DisplayRandomKeyOnRandomCar();
         }
     }
 
     private void PlayHonkSound()
     {
-        // Get the next audio source in the pool
         AudioSource honkSoundInstance = audioSourcePool[currentAudioSourceIndex];
         honkSoundInstance.clip = honkSounds[Random.Range(0, honkSounds.Length)];
         honkSoundInstance.Play();
 
-        // Move to the next audio source in the pool
         currentAudioSourceIndex = (currentAudioSourceIndex + 1) % audioSourcePoolSize;
     }
 
@@ -135,6 +152,6 @@ public class KeyPressManager : MonoBehaviour
             decibelLevel = maxDecibelLevel;
             gameManager.WinGame();
         }
-        decibelMeter.UpdateDecibelMeter(decibelLevel); // Update the decibel meter
+        decibelMeter.UpdateDecibelMeter(decibelLevel);
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CarTrafficMovement : MonoBehaviour
+public class TrafficMovement : MonoBehaviour
 {
     public float movementRange = 0.2f; // Maximum movement range for the car
     public float speed = 0.5f; // Movement speed
@@ -17,7 +17,12 @@ public class CarTrafficMovement : MonoBehaviour
         initialPosition = transform.position;
         targetPosition = initialPosition;
         moveTimer = directionChangeInterval;
-        arrowIndicator.SetActive(false); // Hide the indicator at the start
+
+        if (arrowIndicator != null)
+        {
+            Debug.Log("Setting arrow indicator to inactive at start.");
+            arrowIndicator.SetActive(false); // Hide the indicator at the start
+        }
     }
 
     private void Update()
