@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4497563940039076461}
   - component: {fileID: 3009647776661308589}
-  - component: {fileID: 8475549192398655375}
   - component: {fileID: 4198651368639270181}
+  - component: {fileID: 3558027374195571375}
+  - component: {fileID: 432065379039326392}
   - component: {fileID: -3361565459489413717}
   - component: {fileID: -1543213390534030809}
   m_Layer: 0
-  m_Name: PlayerRotate
+  m_Name: PlayerFly
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,9 +63,13 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 18e8b470-29dd-44f5-b7b5-2634f32976bb
+    m_ActionName: ActionMap/New action[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8475549192398655375}
-        m_TargetAssemblyTypeName: RotateMoveNehaviour, Assembly-CSharp
+      - m_Target: {fileID: 3558027374195571375}
+        m_TargetAssemblyTypeName: RotateFlyBehaviour, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -75,32 +80,29 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 18e8b470-29dd-44f5-b7b5-2634f32976bb
-    m_ActionName: ActionMap/New action[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 4af31157-6465-405c-a486-c8cf1b9a780e
     m_ActionName: ActionMap/FlyAction[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 432065379039326392}
+        m_TargetAssemblyTypeName: ShitBehaviour, Assembly-CSharp
+        m_MethodName: OnShit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6931e797-1557-4cd5-bc65-678a9297e250
+    m_ActionName: ActionMap/ShitAction[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: ControlScheme
   m_DefaultActionMap: ActionMap
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &8475549192398655375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8205622963024818243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76f4c89eaf2c1814789709499f7ec24d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stepTime: 0.2
-  _stepTimeDecrease: 0.06
-  _stepTimeMin: 0.01
 --- !u!114 &4198651368639270181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +118,35 @@ MonoBehaviour:
   TagsToCollide:
   - Car
   Strenght: {x: 500, y: 500, z: 0}
+--- !u!114 &3558027374195571375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8205622963024818243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef80b4e5898198746b192220c125485b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upSpeed: 5
+  _stepTime: 0.2
+  _stepTimeDecrease: 1
+  _stepTimeMin: 0.03
+--- !u!114 &432065379039326392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8205622963024818243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59bbac36e9680094cb4c80848792d55d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjectToSpawn: {fileID: 7452725279717085083, guid: 114feb2f3b0a7014a99eb2e83470ad1c, type: 3}
 --- !u!54 &-3361565459489413717
 Rigidbody:
   m_ObjectHideFlags: 0

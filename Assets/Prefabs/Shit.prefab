@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5169373043070114467}
-  - component: {fileID: 1579924014921486557}
+  - component: {fileID: 6119921653882979136}
   - component: {fileID: 7238840096910878834}
   - component: {fileID: 3475065835197352154}
   m_Layer: 0
-  m_Name: Car
+  m_Name: Shit
   m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,13 +29,13 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7815501628648786359}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1579924014921486557
+--- !u!114 &6119921653882979136
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,10 +44,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7452725279717085083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebba323750c1f2e4d8b280372872aa1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7472714b6ae353d41b03c0997cca1f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: -8
+  Speed: -10
 --- !u!65 &7238840096910878834
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -105,12 +105,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 5169373043070114467}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 77cdf0bfcbf4ce042831c79aaf76e3e9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77cdf0bfcbf4ce042831c79aaf76e3e9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77cdf0bfcbf4ce042831c79aaf76e3e9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 77cdf0bfcbf4ce042831c79aaf76e3e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.044425
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77cdf0bfcbf4ce042831c79aaf76e3e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.124
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77cdf0bfcbf4ce042831c79aaf76e3e9, type: 3}
       propertyPath: m_LocalPosition.z
