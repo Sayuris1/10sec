@@ -18,11 +18,8 @@ public class TrafficMovement : MonoBehaviour
         targetPosition = initialPosition;
         moveTimer = directionChangeInterval;
 
-        if (arrowIndicator != null)
-        {
-            Debug.Log("Setting arrow indicator to inactive at start.");
-            arrowIndicator.SetActive(false); // Hide the indicator at the start
-        }
+        // Always hide the indicator at the start
+        arrowIndicator.SetActive(false);
     }
 
     private void Update()

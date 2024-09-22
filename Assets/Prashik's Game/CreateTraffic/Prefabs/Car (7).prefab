@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 77cdf0bfcbf4ce042831c79aaf76e3e9, type: 3}
+      propertyPath: m_TagString
+      value: Car
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -83,8 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9b62f802c271640b2ea3833658a68a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
-  offScreenX: 15
+  speed: 1
 --- !u!54 &-3563581915920789339
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108,9 +111,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
+  m_IsKinematic: 1
+  m_Interpolate: 1
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &-1892843070366723377
 BoxCollider:
@@ -131,5 +134,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.711463, y: 0.34160507, z: 0.33179557}
-  m_Center: {x: -1.0984454, y: 0.1385718, z: -0.30666566}
+  m_Size: {x: 0.711463, y: 0.2189921, z: 0.33179557}
+  m_Center: {x: -1.0984454, y: 0.19987828, z: -0.30666566}
